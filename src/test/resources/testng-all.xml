@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite Completa">
+    <listeners>
+        <listener class-name="base.ScreenshotListener"/>
+    </listeners>
+    <test name="Todos los tests">
+        <packages>
+            <package name="test"/>
+        </packages>
+    </test>
+</suite>
