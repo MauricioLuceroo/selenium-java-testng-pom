@@ -44,4 +44,52 @@ public class LoginTest extends BaseTest {
         String currentUrl = driver.getCurrentUrl();
         Assert.assertEquals(currentUrl, URL_LOGIN, "El usuario no debería haber podido iniciar sesión.");
     }
+
+    @Test(groups = {"regression"})
+    public void loginConEmailVacio() {
+        HomePage homePage = new HomePage(driver);
+        homePage.abrir();
+        homePage.clickLoginLink();
+
+        LogInPage loginPage = new LogInPage(driver);
+        loginPage.escribirUsuario("");  // Email vacío
+        loginPage.escribirContrasena("Prueba1");
+        loginPage.clickLogin();
+
+        // Verificar que permanece en la página de login (no se permite el login)
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertEquals(currentUrl, URL_LOGIN, "No debería permitir login con email vacío.");
+    }
+
+    @Test(groups = {"regression"})
+    public void loginConPasswordVacio() {
+        HomePage homePage = new HomePage(driver);
+        homePage.abrir();
+        homePage.clickLoginLink();
+
+        LogInPage loginPage = new LogInPage(driver);
+        loginPage.escribirUsuario("JuanLopez@gmail.com");
+        loginPage.escribirContrasena("");  // Password vacío
+        loginPage.clickLogin();
+
+        // Verificar que permanece en la página de login (no se permite el login)
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertEquals(currentUrl, URL_LOGIN, "No debería permitir login con password vacío.");
+    }
+
+    @Test(groups = {"regression"})
+    public void loginConEmailInvalido() {
+        HomePage homePage = new HomePage(driver);
+        homePage.abrir();
+        homePage.clickLoginLink();
+
+        LogInPage loginPage = new LogInPage(driver);
+        loginPage.escribirUsuario("email_sin_arroba");  // Email mal formateado
+        loginPage.escribirContrasena("Prueba1");
+        loginPage.clickLogin();
+
+        // Verificar que permanece en la página de login (no se permite el login)
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertEquals(currentUrl, URL_LOGIN, "No debería permitir login con email mal formateado.");
+    }
 }

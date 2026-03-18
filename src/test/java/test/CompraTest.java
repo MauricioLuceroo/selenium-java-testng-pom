@@ -17,6 +17,8 @@ public class CompraTest extends BaseTest {
 
         ProductPage productPage = new ProductPage(driver);
         productPage.clickAddToCart();
+        /* Workaround BUG-001: Volver a home antes de ir al carrito
+           Click directo en carrito desde ProductPage  congela la página */
 
         productPage.clickHomeButton();
         homePage.clickCartLink();
@@ -32,3 +34,5 @@ public class CompraTest extends BaseTest {
                 "Al final del flujo la URL debería ser de checkout o carrito. Actual: " + currentUrl);
     }
 }
+
+

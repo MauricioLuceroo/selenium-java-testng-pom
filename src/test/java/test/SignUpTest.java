@@ -54,4 +54,60 @@ public class SignUpTest extends BaseTest {
         Assert.assertFalse(driver.getCurrentUrl().contains("account/register"),
                 "Tras registro exitoso no debería seguir en la página de registro. URL: " + driver.getCurrentUrl());
     }
+
+    @Test(groups = {"regression"})
+    public void signUpConEmailYaRegistrado() {
+        HomePage homePage = new HomePage(driver);
+        homePage.abrir();
+        homePage.clickSignUpLink();
+
+        SignUpPage signUpPage = new SignUpPage(driver);
+
+        signUpPage.ingresarNombre("Usuario");
+        signUpPage.ingresarApellido("Apellido");
+        signUpPage.ingresarEmail("JuanLopez@gmail.com");  // Email ya registrado
+        signUpPage.ingresarPassword("Password1!");
+        signUpPage.clickCreateAccount();
+
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue(currentUrl.contains("account/register"), 
+                "Debería permanecer en la página de registro si el email ya existe.");
+    }
+
+    @Test(groups = {"regression"})
+    public void signUpConPasswordDebil() {
+        HomePage homePage = new HomePage(driver);
+        homePage.abrir();
+        homePage.clickSignUpLink();
+
+        SignUpPage signUpPage = new SignUpPage(driver);
+        signUpPage.ingresarNombre("Usuario");
+        signUpPage.ingresarApellido("Apellido");
+        signUpPage.ingresarEmail("test_debil@gmail.com");
+        signUpPage.ingresarPassword("123");  // Password muy débil
+        signUpPage.clickCreateAccount();
+
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue(currentUrl.contains("account/register"), 
+                "Debería permanecer en la página de registro si la contraseña es débil.");
+    }
+
+    @Test(groups = {"regression"})
+    public void signUpConCamposVacios() {
+        HomePage homePage = new HomePage(driver);
+        homePage.abrir();
+        homePage.clickSignUpLink();
+
+        SignUpPage signUpPage = new SignUpPage(driver);
+        // Dejar campos vacíos
+        signUpPage.ingresarNombre("");
+        signUpPage.ingresarApellido("");
+        signUpPage.ingresarEmail("");
+        signUpPage.ingresarPassword("");
+        signUpPage.clickCreateAccount();
+
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue(currentUrl.contains("account/register"), 
+                "Debería permanecer en la página de registro si hay campos vacíos.");
+    }
 }

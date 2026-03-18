@@ -1,6 +1,6 @@
 # Bugs Conocidos
 
-Este archivo documenta los bugs conocidos en el proyecto de testing de Selenium.
+Este archivo documenta los bugs conocidos en el proyecto de testing con Selenium.
 
 ## Formato de Reporte de Bug
 
@@ -22,31 +22,39 @@ Este archivo documenta los bugs conocidos en el proyecto de testing de Selenium.
 
 **Notas adicionales:**
 
+
 ---
 
 ## Bugs Reportados
 
-### Bug #1: Contador del carrito no se actualiza inmediatamente
-**Descripción:** Después de agregar un producto al carrito, el contador numérico en el icono del carrito no se actualiza inmediatamente.
+### Bug #001: BUG-001: Carrito se queda cargando desde página de producto
+**Descripción:** Al agregar un producto al carrito desde la página del producto
+y luego hacer click en el ícono del carrito, la página se queda cargando
+indefinidamente y nunca muestra el contenido del carrito.
 
 **Pasos para reproducir:**
-1. Ir a la página principal
-2. Hacer clic en un producto
-3. Agregar al carrito
-4. Observar el contador del carrito
+1. Desde el Home, hacer click en un producto para ir a su página deL producto
+2. Hacer click en "Add to Cart"
+3. Hacer click en el ícono del carrito
+4. Observar que la página se queda cargando sin mostrar el contenido del carrito
 
-**Resultado esperado:** El contador debería mostrar "1" inmediatamente.
+**Resultado esperado:** Debería mostrar el contenido del carrito con el producto agregado.
 
-**Resultado actual:** El contador no se actualiza hasta recargar la página o navegar.
+**Resultado actual:** La página se queda cargando indefinidamente sin mostrar el contenido del carrito.
 
-**Severidad:** Media
+**Severidad:** Alta
 
 **Estado:** Abierto
 
-**Notas adicionales:** Se agregó una espera de 2 segundos en `clickAddToCart()` como workaround temporal.
+**Notas adicionales:** El problema solo ocurre al hacer click en el carrito directamente desde
+la página de producto. Si se vuelve a la página principal primero y luego
+se accede al carrito, funciona correctamente.
 
-### Bug #2: Validación de campos en login no muestra mensajes de error
-**Descripción:** Cuando se intenta hacer login con campos vacíos o inválidos, no se muestran mensajes de error específicos.
+
+
+### Bug #002: Validación de campos en login no muestra mensajes de error
+**Descripción:** Cuando se intenta hacer login con campos vacíos o inválidos, no se muestran mensajes de error 
+específicos.
 
 **Pasos para reproducir:**
 1. Ir a la página de login
@@ -62,33 +70,3 @@ Este archivo documenta los bugs conocidos en el proyecto de testing de Selenium.
 **Estado:** Abierto
 
 **Notas adicionales:** Los tests validan que la URL no cambia, pero UX podría mejorarse.
-
-### Bug #3: Screenshot en compraProducto se toma antes de que el carrito se actualice
-**Descripción:** La captura de pantalla se toma antes de que el contador del carrito refleje el producto agregado.
-
-**Pasos para reproducir:**
-1. Ejecutar el test `compraProducto()`
-2. Revisar la screenshot tomada
-
-**Resultado esperado:** La screenshot debería mostrar el carrito con el producto.
-
-**Resultado actual:** Puede que no muestre el contador actualizado.
-
-**Severidad:** Baja
-
-**Estado:** Abierto
-
-**Notas adicionales:** Relacionado con el Bug #1. Se agregó espera de 2 segundos.
-
----
-
-## Instrucciones para Agregar Nuevos Bugs
-
-1. Copia el formato de arriba
-2. Numera el bug consecutivamente
-3. Completa todos los campos requeridos
-4. Actualiza el estado cuando se resuelva
-
-## Contacto
-
-Reportar nuevos bugs a: [tu-email@ejemplo.com]
