@@ -6,6 +6,13 @@ target/
 ## IDEs
 .idea/
 .vscode/
+.metadata/
+.settings/
+.project
+.classpath
+
+## Test outputs
+test-output/
 
 ## Sistema operativo
 .DS_Store
