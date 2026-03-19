@@ -4,13 +4,12 @@
         <listener class-name="base.ScreenshotListener"/>
     </listeners>
     <test name="Regression Tests">
-        <groups>
-            <run>
-                <include name="regression"/>
-            </run>
-        </groups>
-        <packages>
-            <package name="test"/>
-        </packages>
+        <classes>
+            <class name="test.LoginTest"/>
+            <class name="test.BusquedaTest"/>
+            <class name="test.SignUpTest"/>
+            <class name="test.CompraTest"/>
+            <class name="runners.CucumberRegressionTestRunner"/>
+        </classes>
     </test>
 </suite>
