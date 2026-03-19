@@ -1,7 +1,9 @@
 package base;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
@@ -14,6 +16,10 @@ public class BaseTest {
         return driver;
     }
 
+    @BeforeTest(alwaysRun = true)
+    public void beforeTest() {
+        driver = null;
+    }
 
     @BeforeMethod
     public void setUp() {
@@ -27,6 +33,15 @@ public class BaseTest {
     public void tearDown() {
         if (driver != null) {
             driver.quit();
+            driver = null;
+        }
+    }
+
+    @AfterTest(alwaysRun = true)
+    public void afterTest() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
         }
     }
 }

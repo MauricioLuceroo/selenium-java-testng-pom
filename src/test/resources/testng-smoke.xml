@@ -4,13 +4,10 @@
         <listener class-name="base.ScreenshotListener"/>
     </listeners>
     <test name="Smoke Tests">
-        <groups>
-            <run>
-                <include name="smoke"/>
-            </run>
-        </groups>
-        <packages>
-            <package name="test"/>
-        </packages>
+        <classes>
+            <class name="test.LoginTest"/>
+            <class name="test.BusquedaTest"/>
+            <class name="runners.CucumberSmokeTestRunner"/>
+        </classes>
     </test>
 </suite>

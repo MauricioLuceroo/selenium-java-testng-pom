@@ -8,6 +8,7 @@ import pages.LogInPage;
 
 public class LoginSteps {
 
+    private static final String LOGIN_PATH = "/account/login";
     private LogInPage loginPage;
 
     @Dado("que estoy en la página de login de Sauce Demo")
@@ -29,7 +30,19 @@ public class LoginSteps {
 
     @Entonces("el login debería ser exitoso")
     public void el_login_deberia_ser_exitoso() {
-        // Acá podrías validar algo real de la página (título, mensaje, etc.)
-        Assert.assertTrue(true, "Login ejecutado (placeholder de assert).");
+        String currentUrl = Hooks.driver.getCurrentUrl();
+        Assert.assertFalse(
+                currentUrl.contains(LOGIN_PATH),
+                "El usuario debería haber salido de login. URL actual: " + currentUrl
+        );
+    }
+
+    @Entonces("debería permanecer en la página de login")
+    public void deberia_permanecer_en_la_pagina_de_login() {
+        String currentUrl = Hooks.driver.getCurrentUrl();
+        Assert.assertTrue(
+                currentUrl.contains(LOGIN_PATH),
+                "El usuario debería seguir en login. URL actual: " + currentUrl
+        );
     }
 }
