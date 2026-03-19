@@ -3,6 +3,7 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HomePage extends BasePage {
 
@@ -19,6 +20,8 @@ public class HomePage extends BasePage {
             By.xpath("//div[@id='minicart']//a[contains(text(),'My Cart ')]");
     private final By checkoutButton =
             By.xpath("//div[@class='actions']//input[@value='Check Out']");
+    private final By SearchInput =
+            By.cssSelector("input#search-field");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -46,5 +49,12 @@ public class HomePage extends BasePage {
     public void clickCheckoutButton() {
         clickWhenVisible(checkoutButton, DEFAULT_TIMEOUT_SECONDS);
     }
-}
 
+    public void enterSearch(String query) {
+        WebElement searchElement = waitForVisibility(SearchInput, DEFAULT_TIMEOUT_SECONDS);
+        searchElement.clear();
+        searchElement.sendKeys(query);
+        searchElement.submit(); // Asumiendo que el input tiene submit
+    }
+
+}

@@ -27,7 +27,7 @@ Este archivo documenta los bugs conocidos en el proyecto de testing con Selenium
 
 ## Bugs Reportados
 
-### Bug #001: BUG-001: Carrito se queda cargando desde página de producto
+### Bug #001: BUG-001: Carrito se queda cargando desde página de producto luego de agregar un producto
 **Descripción:** Al agregar un producto al carrito desde la página del producto
 y luego hacer click en el ícono del carrito, la página se queda cargando
 indefinidamente y nunca muestra el contenido del carrito.
