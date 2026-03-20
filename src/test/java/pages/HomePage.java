@@ -17,9 +17,9 @@ public class HomePage extends BasePage {
     private final By signUpLink =
             By.id("customer_register_link");
     private final By cartLink =
-            By.xpath("//div[@id='minicart']//a[contains(text(),'My Cart ')]");
+            By.cssSelector("#minicart a[href*='/cart']");
     private final By checkoutButton =
-            By.xpath("//div[@class='actions']//input[@value='Check Out']");
+            By.cssSelector("div.actions input[value='Check Out']");
     private final By SearchInput =
             By.cssSelector("input#search-field");
 

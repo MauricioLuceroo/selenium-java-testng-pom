@@ -16,13 +16,13 @@ public class CheckOutPage extends BasePage {
         private final By City1 =
                 By.cssSelector("input#TextField6");
         private final By CardNumber1 =
-                By.xpath("//div[@class='current-field']//input[@id='number']");
+                By.cssSelector("div.current-field input#number");
         private final By ExpirationDate =
-                By.xpath("//div[@class='current-field']//input[@id='expiry']");
+                By.cssSelector("div.current-field input#expiry");
         private final By SecurityCode =
-                By.xpath("//div[@class='current-field']//input[@id='verification_value']");
+                By.cssSelector("div.current-field input#verification_value");
         private final By NameCard =
-                By.xpath("//div[@class='current-field']//input[@id='name']");
+                By.cssSelector("div.current-field input#name");
         private final By PayNowButton =
                 By.cssSelector("#checkout-pay-button");
         private final By DiscountCode =

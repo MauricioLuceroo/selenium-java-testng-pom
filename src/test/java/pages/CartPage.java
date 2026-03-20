@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 public class CartPage extends BasePage {
 
     private final By checkoutButtonCart =
-            By.xpath("//div[contains(@class,'six') and contains(@class,'columns')]//input[@id='checkout']");
+            By.cssSelector("div.six.columns input#checkout");
 
     public CartPage(WebDriver driver) {
         super(driver);

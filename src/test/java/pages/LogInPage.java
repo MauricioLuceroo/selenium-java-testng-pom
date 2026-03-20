@@ -12,7 +12,7 @@ public class LogInPage extends BasePage {
 
     private final By emailAddress = By.cssSelector("input[id='customer_email']");
     private final By passwordField = By.cssSelector("input[id='customer_password']");
-    private final By loginButton = By.xpath("//div[contains(@class,'action_bottom')]// input[@value='Sign In']");
+    private final By loginButton = By.cssSelector(".action_bottom input[value='Sign In']");
 
 
     public LogInPage(WebDriver driver) {
