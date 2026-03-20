@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SignUpPage extends BasePage {
 
-    private final By firstName = By.xpath("//div[@id='first_name']//input[@id='first_name']");
+    private final By firstName = By.cssSelector("input#first_name");
     private final By lastName = By.cssSelector("input[id='last_name']");
     private final By emailAddress = By.cssSelector("input[id='email']");
     private final By password = By.cssSelector("input[id='password']");

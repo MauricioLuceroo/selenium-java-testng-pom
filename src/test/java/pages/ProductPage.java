@@ -9,7 +9,7 @@ public class ProductPage extends BasePage {
     private final By addToCartButton =
             By.cssSelector("input#add.btn.add-to-cart");
     private final By homeButton =
-            By.xpath("//ul[@id='main-menu']//a[contains(text(),'Home')]");
+            By.cssSelector("#main-menu a[href='/']");
     
     public ProductPage(WebDriver driver) {
         super(driver);
@@ -17,11 +17,8 @@ public class ProductPage extends BasePage {
 
     public void clickAddToCart() {
         clickWhenVisible(addToCartButton, DEFAULT_TIMEOUT_SECONDS);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        // Esperar a que el carrito procese la petición AJAX antes de navegar
+        waitForJQueryAjax(DEFAULT_TIMEOUT_SECONDS);
     }
 
     public void clickHomeButton() {

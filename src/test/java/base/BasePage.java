@@ -2,6 +2,7 @@ package base;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -34,6 +35,18 @@ public class BasePage {
 
     protected void clickWhenVisible(By locator, long timeoutInSeconds) {
         waitForVisibility(locator, timeoutInSeconds).click();
+    }
+
+    /**
+     * Espera a que todas las peticiones AJAX de jQuery hayan finalizado.
+     * Útil tras acciones que disparan llamadas asíncronas (ej: agregar al carrito).
+     */
+    protected void waitForJQueryAjax(long timeoutInSeconds) {
+        new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds))
+                .until((ExpectedCondition<Boolean>) d ->
+                        (Boolean) ((JavascriptExecutor) d)
+                                .executeScript(
+                                        "return typeof jQuery !== 'undefined' && jQuery.active === 0"));
     }
 
     public void ingresarEmail(String email) {
